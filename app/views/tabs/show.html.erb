@@ -1,13 +1,10 @@
 <% page_title "#{@tab.title} - Music Tab" %>
 
-<div class="row justify-content-center">
-  <div class="col-md-9">
-    <div id="show-card" role="region" aria-labelledby="show-tab-title">
-      <h2 id="show-tab-title" class="sr-only"><%= @tab.title %></h2>
-      <%= render 'tabs/show/show_card', tab: @tab %>
-    </div>
+<div class="max-w-4xl mx-auto">
+  <div id="show-card" role="region" aria-labelledby="show-tab-title">
+    <h1 id="show-tab-title" class="sr-only"><%= @tab.title %></h1>
+    <%= render 'tabs/show/show_card', tab: @tab %>
   </div>
 </div>
 
 <%= render 'tabs/show/auto_scroll' %>
-

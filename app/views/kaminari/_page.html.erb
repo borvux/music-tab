@@ -1,9 +1,9 @@
 <% if page.current? %>
-  <li class="page-item active">
-    <%= content_tag :a, page, data: { remote: remote }, rel: page.rel, class: 'page-link' %>
+  <li>
+    <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-sky-600 border border-sky-500 rounded-md cursor-default"><%= page %></span>
   </li>
 <% else %>
-  <li class="page-item">
-    <%= link_to page, url, remote: remote, rel: page.rel, class: 'page-link' %>
+  <li>
+    <%= link_to page, url, remote: remote, rel: page.rel, class: 'relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-300 bg-gray-800 border border-gray-600 rounded-md hover:bg-gray-700 transition' %>
   </li>
 <% end %>

@@ -1,8 +1,9 @@
-<%= form_with(model: tab, html: { id: "tab-form", role: "form" }) do |form| %>
+<%= form_with(model: tab, html: { id: "tab-form", role: "form", class: "space-y-6" }) do |form| %>
   <% if tab.errors.any? %>
-    <div class="text-danger" role="alert">
-      <h5><%= pluralize(tab.errors.count, "error") %> prohibited this tab from being saved:</h5>
-      <ul>
+    <div class="bg-red-900 border border-red-700 text-red-100 px-4 py-3 rounded-lg relative" role="alert">
+      <strong class="font-bold">Oops!</strong>
+      <span class="block sm:inline"><%= pluralize(tab.errors.count, "error") %> prohibited this tab from being saved:</span>
+      <ul class="mt-2 list-disc list-inside">
         <% tab.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -10,22 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title, style: "display: block", class: "h5 form-label" %>
-    <%= form.text_field :title, class: "form-control", aria: { describedby: "title-help" } %>
+  <div>
+    <%= form.label :title, class: "block text-sm font-medium text-gray-300 mb-2" %>
+    <%= form.text_field :title, class: "block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm", aria: { describedby: "title-help" } %>
   </div>
 
-  <div class="field mt-4">
-    <%= form.label :content, style: "display: block", class: "h5 form-label" %>
-    <%= form.rich_text_area :content, class: "form-control", aria: { describedby: "content-help" } %>
+  <div>
+    <%= form.label :content, class: "block text-sm font-medium text-gray-300 mb-2" %>
+    <%= form.rich_text_area :content, class: "prose dark:prose-invert max-w-none block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm", aria: { describedby: "content-help" } %>
   </div>
 
-
-  <div class="actions d-flex align-items-center justify-content-center mt-2">
-    <%= button_tag button_label, type: "button", class: "btn btn-info submit-button", data: { form_id: "tab-form" }, aria: { label: "Submit Tab" } %>
+  <div class="flex items-center justify-end pt-4">
+    <%= button_tag button_label, type: "button", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-gray-800 submit-button", data: { form_id: "tab-form" }, aria: { label: "Submit Tab" } %>
   </div>
 <% end %>
 
-<%= render 'shared/modal', title: 'Confirm Submission', body: 'Are you sure?', no: 'Cancel', yes: 'Confirm', no_btn: 'btn btn-danger', yes_btn: 'btn btn-success', devise_action: false, modal_id: 'updateConfirmationModal' %>
+<%= render 'shared/modal', title: 'Confirm Submission', body: 'Are you sure?', no: 'Cancel', yes: 'Confirm', no_btn: 'bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', yes_btn: 'bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded', devise_action: false, modal_id: 'updateConfirmationModal' %>
 
 <%= javascript_include_tag 'form_modal' %>

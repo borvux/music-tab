@@ -1,15 +1,25 @@
-<footer id="auto-scroll" class="fixed-bottom bg-light" role="contentinfo" aria-labelledby="auto-scroll-btn">
-  <div class="container-md-fluid">
-    <div class="row justify-content-center">
-      <div class="col text-center my-1">
-        <button id="auto-scroll-btn" class="btn btn-outline-dark-emphasis" aria-label="Toggle auto-scroll">
-          Auto Scroll<i class="fa-solid fa-play ms-2"></i>
+<footer id="auto-scroll" class="fixed-bottom bg-gray-900 bg-opacity-90 backdrop-blur-sm border-t border-gray-700" role="contentinfo" aria-labelledby="auto-scroll-btn">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center h-16">
+      <div class="flex items-center space-x-4">
+        <button id="auto-scroll-btn" class="flex items-center px-4 py-2 border border-gray-600 text-sm font-medium rounded-md text-gray-300 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-gray-900" aria-label="Toggle auto-scroll">
+          <span class="mr-2">Auto Scroll</span>
+          <svg class="h-5 w-5 play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+          </svg>
+           <svg class="h-5 w-5 pause-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M5.75 4.5a.75.75 0 00-.75.75v10.5a.75.75 0 001.5 0V5.25a.75.75 0 00-.75-.75zM14.25 4.5a.75.75 0 00-.75.75v10.5a.75.75 0 001.5 0V5.25a.75.75 0 00-.75-.75z" />
+          </svg>
         </button>
 
-        <div class="btn-group" role="group" aria-label="Scroll speed controls">
-          <div id="decrease-speed-btn" class="btn btn-outline-dark-emphasis" aria-label="Decrease scroll speed"><i class="fa-solid fa-minus"></i></div>
-          <div class="btn btn-outline-dark-emphasis" aria-current="page" id="scroll-speed-display">Scroll Speed: 1</div>
-          <div id="increase-speed-btn" class="btn btn-outline-dark-emphasis" aria-label="Increase scroll speed"><i class="fa-solid fa-plus"></i></div>
+        <div class="flex items-center bg-gray-800 rounded-md" role="group" aria-label="Scroll speed controls">
+          <button id="decrease-speed-btn" class="px-3 py-2 border border-gray-600 rounded-l-md text-gray-300 hover:bg-gray-700" aria-label="Decrease scroll speed">
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M3.75 9.25a.75.75 0 000 1.5h12.5a.75.75 0 000-1.5H3.75z" /></svg>
+          </button>
+          <div id="scroll-speed-display" class="px-4 py-2 border-t border-b border-gray-600 text-sm text-gray-300">Speed: 1</div>
+          <button id="increase-speed-btn" class="px-3 py-2 border border-gray-600 rounded-r-md text-gray-300 hover:bg-gray-700" aria-label="Increase scroll speed">
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" /></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -17,4 +27,3 @@
 </footer>
 
 <%= javascript_include_tag 'auto_scroll' %>
-

@@ -1,26 +1,30 @@
 <% page_title "Forgot your password? - Music Tab" %>
-<div class="row justify-content-center" role="region" aria-labelledby="forgot-password-heading">
-  <div class="col-lg-4">
-    <div class="card m-3">
-      <div class="card-body">
-        <div id="forgot-password-heading" class="h2 text-center">Forgot your password?</div>
-        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, role: "form", "aria-labelledby": "forgot-password-heading" }) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
 
-          <div class="field">
-            <%= f.label :email, class: "form-label" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-          </div>
+<div class="flex items-center justify-center min-h-[calc(100vh-150px)] px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div class="bg-gray-800 shadow-lg rounded-lg p-8">
+      <h2 class="text-center text-3xl font-extrabold text-white">
+        Forgot your password?
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-400">
+        Enter your email and we'll send you instructions to reset it.
+      </p>
 
-          <div class="actions d-flex align-items-center justify-content-center">
-            <%= f.submit "Send me reset password instructions", class: "btn btn-primary m-2" %>
-          </div>
-        <% end %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "mt-8 space-y-6" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="text-center m-2">
-          <%= render "devise/shared/links" %>
+        <div>
+          <%= f.label :email, class: "sr-only" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-sky-500 focus:border-sky-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
         </div>
-      </div>
+
+        <div>
+          <%= f.submit "Send reset instructions", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-gray-800" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="text-center text-sm">
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>

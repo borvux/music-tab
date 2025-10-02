@@ -1,13 +1,16 @@
-<div class="row my-5 mx-1 bg-page" id="main-content" role="region" aria-labelledby="welcome-title" style="background-image: url('<%= asset_path("landing-page.jpg") %>')">
-  <div class="col-md text-center">
-    <h1 id="welcome-title" class="mb-3 text-light"><strong>Simplify Your Song Tabs Management</strong></h1>
-    <div class="mb-4 text-light"><strong>Music Tab is here to revolutionize the way you manage your song tabs</strong></div>
+<div class="relative text-center py-20 md:py-32 bg-gray-900 overflow-hidden" style="background-image: url('<%= asset_path('landing-page.jpg') %>'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight">
+      Simplify Your Song Tab Management
+    </h1>
+    <p class="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+      Music Tab is here to revolutionize the way you manage your song tabs. All your music, perfectly organized, always at your fingertips.
+    </p>
     <% if !user_signed_in? %>
-      <div class="mb-3">
-        <%= link_to "Get Started", new_user_registration_path, class: "btn btn-info px-5 py-4 fs-4", aria: { label: "Get Started with Music Tab" } %>
-      </div>
-      <div>
-        <%= link_to "Sign-in", new_user_session_path, class: "btn btn-sm btn-outline-light", aria: { label: "Sign in to Music Tab" } %>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <%= link_to "Get Started", new_user_registration_path, class: "w-full sm:w-auto inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105", aria: { label: "Get Started with Music Tab" } %>
+        <%= link_to "Sign In", new_user_session_path, class: "w-full sm:w-auto text-gray-300 hover:text-white font-medium", aria: { label: "Sign in to Music Tab" } %>
       </div>
     <% end %>
   </div>

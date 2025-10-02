@@ -1,12 +1,5 @@
 <% page_title "Create New Tab - Music Tab" %>
 
-<div id="new-content">
-  <div class="row justify-content-center">
-    <div class="col-md-9">
-      <div id="new-card" role="region" aria-labelledby="new-tab-title">
-        <h2 id="new-tab-title" class="sr-only">Create New Tab</h2>
-        <%= render 'tabs/new/new_card', tab: @tab %>
-      </div>
-    </div>
-  </div>
+<div class="max-w-3xl mx-auto">
+  <%= render 'tabs/new/new_card', tab: @tab %>
 </div>

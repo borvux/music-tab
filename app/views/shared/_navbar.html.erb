@@ -1,63 +1,84 @@
-<nav class="navbar navbar-expand-md bg-body-tertiary sticky-top bg-light">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand fs-2 text-decoration-none text-dark ms-2" do %>
-      <i class="fa-solid fa-music fs-1 text-info"></i>
-      Music Tabs
-    <% end %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 home-tabs-center">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Home", root_path, class: "nav-link", aria: { current: "page" } %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Tabs", tabs_path, class: "nav-link", aria: { current: "page" } %>
-          </li>
+<nav class="bg-gray-800 shadow-md sticky-top">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="flex flex-1 items-center justify-start">
+        <%= link_to root_path, class: "flex flex-shrink-0 items-center" do %>
+          <svg class="h-8 w-auto text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+          </svg>
+          <span class="ml-3 text-2xl font-bold text-white">Music Tabs</span>
         <% end %>
-      </ul>
-      <% if user_signed_in? %>
-        <div class="dropdown d-none d-md-block ms-auto mb-2 mb-md-0">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <%= link_to edit_user_registration_path, class: "dropdown-item text-secondary mb-2 mb-md-0", aria: { current: "page" } do %>
-              Settings <i class="bi bi-gear-fill"></i>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <% if user_signed_in? %>
+              <%= link_to "Home", root_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+              <%= link_to "Tabs", tabs_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
             <% end %>
-            <%= link_to "#", class: "dropdown-item text-danger", data: { bs_toggle: "modal", bs_target: "#logoutConfirmationModal", path: destroy_user_session_path } do %>
-              Logout <i class="fa-solid fa-right-from-bracket"></i>
-            <% end %>
-          </ul>
+          </div>
         </div>
-        <ul class="navbar-nav d-md-none ms-auto mb-2 mb-md-0 p-0">
-          <li class="nav-item">
-            <%= link_to edit_user_registration_path, class: "nav-link text-secondary", aria: { current: "page" } do %>
-              Settings <i class="bi bi-gear-fill"></i>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "#", class: "nav-link text-danger", data: { bs_toggle: "modal", bs_target: "#logoutConfirmationModal", path: destroy_user_session_path } do %>
-              Logout <i class="fa-solid fa-right-from-bracket"></i>
-            <% end %>
-          </li>
-        </ul>
-      <% else %>
-        <ul class="navbar-nav ms-auto mb-2 mb-md-0 p-0">
-          <li class="nav-item d-flex align-items-center">
-            <%= link_to "Sign-in", new_user_session_path, class: "btn btn-sm btn-outline-secondary", aria: { current: "page" } %>
-          </li>
-          <li class="nav-item d-flex align-items-center">
-            <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-info mb-2 mb-md-0", aria: { current: "page" } %>
-          </li>
-        </ul>
-      <% end %>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <% if user_signed_in? %>
+          <!-- Profile dropdown -->
+          <div class="relative ml-3" data-controller="dropdown">
+            <div>
+              <button type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true" data-action="click->dropdown#toggle">
+                <span class="sr-only">Open user menu</span>
+                <svg class="h-8 w-8 rounded-full text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </button>
+            </div>
+            <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" data-dropdown-target="menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+              <%= link_to edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem", tabindex: "-1" do %>
+                Settings
+              <% end %>
+              <%= link_to "#", class: "block px-4 py-2 text-sm text-red-600 hover:bg-gray-100", data: { bs_toggle: "modal", bs_target: "#logoutConfirmationModal", path: destroy_user_session_path }, role: "menuitem", tabindex: "-1" do %>
+                Logout
+              <% end %>
+            </div>
+          </div>
+        <% else %>
+          <div class="flex items-center space-x-4">
+            <%= link_to "Sign In", new_user_session_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "bg-sky-500 hover:bg-sky-600 text-white rounded-md px-3 py-2 text-sm font-medium" %>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="sm:hidden" id="mobile-menu">
+     <% if user_signed_in? %>
+      <div class="space-y-1 px-2 pt-2 pb-3">
+        <%= link_to "Home", root_path, class: "bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" %>
+        <%= link_to "Tabs", tabs_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium" %>
+      </div>
+    <% end %>
   </div>
 </nav>
 
-<%= render 'shared/modal', title: 'Confirm Logout', body: 'Are you sure you want to logout?', yes: 'Logout', no: 'Cancel', yes_btn: 'btn btn-danger', no_btn: 'btn btn-info', devise_action: true, modal_id: 'logoutConfirmationModal' %>
+<%= render 'shared/modal', title: 'Confirm Logout', body: 'Are you sure you want to logout?', yes: 'Logout', no: 'Cancel', yes_btn: 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded', no_btn: 'bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded', devise_action: true, modal_id: 'logoutConfirmationModal' %>
 
 <%= javascript_include_tag 'link_modal' %>
+
+<%# You might need a stimulus controller for the dropdown %>
+<script>
+  // Simple dropdown toggle logic. For a more robust solution, use StimulusJS.
+  document.addEventListener('turbo:load', () => {
+    const userMenuButton = document.getElementById('user-menu-button');
+    if (userMenuButton) {
+      userMenuButton.addEventListener('click', () => {
+        const menu = userMenuButton.parentElement.nextElementSibling;
+        menu.classList.toggle('hidden');
+      });
+      document.addEventListener('click', (event) => {
+        const menu = userMenuButton.parentElement.nextElementSibling;
+        if (!userMenuButton.contains(event.target) && !menu.contains(event.target)) {
+          menu.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>

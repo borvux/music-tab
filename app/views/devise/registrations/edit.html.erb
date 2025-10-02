@@ -1,69 +1,76 @@
 <% page_title "Edit Profile - Music Tab" %>
 
-<div class="row justify-content-center" role="main">
-  <div class="col-md-7">
-    <div class="card m-3" aria-labelledby="edit-profile-heading">
-      <div class="card-body">
-        <h2 id="edit-profile-heading" class="text-center">Edit <%= resource_name.to_s.humanize %></h2>
+<div class="max-w-2xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+  <div class="bg-gray-800 shadow-lg rounded-lg p-8 space-y-8">
+    <div>
+      <h2 class="text-center text-3xl font-extrabold text-white">
+        Edit Your Profile
+      </h2>
+    </div>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: "user-edit-form" }) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: "user-edit-form", class: "space-y-6" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-          <div class="field">
-            <%= f.label :email, class: "form-label" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", aria: { describedby: "email-help" } %>
-          </div>
+      <div>
+        <%= f.label :email, class: "block text-sm font-medium text-gray-300" %>
+        <div class="mt-1">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" %>
+        </div>
+      </div>
 
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div role="alert">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div class="rounded-md bg-yellow-900 bg-opacity-50 p-4">
+          <p class="text-sm text-yellow-300">Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        </div>
+      <% end %>
 
-          <div class="field">
-            <%= f.label :password, class: "form-label" %> <i>(leave blank if you don't want to change it)</i><br />
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", aria: { describedby: "password-help" } %>
-            <% if @minimum_password_length %>
-              <em id="password-help"><%= @minimum_password_length %> characters minimum</em>
-            <% end %>
-          </div>
-
-          <div class="field">
-            <%= f.label :password_confirmation, class: "form-label" %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-          </div>
-
-          <div class="field">
-            <%= f.label :current_password, class: "form-label" %> <i>(we need your current password to confirm your changes)</i><br />
-            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-          </div>
-
-          <div class="actions d-flex align-items-center justify-content-center">
-            <%= button_tag "Update", type: "button", class: "btn btn-info m-2 submit-button", data: { form_id: "user-edit-form" }, aria: { label: "Update Profile" } %>
-          </div>
+      <div>
+        <%= f.label :password, class: "block text-sm font-medium text-gray-300" %>
+        <i class="text-xs text-gray-400">(leave blank if you don't want to change it)</i>
+        <div class="mt-1">
+          <%= f.password_field :password, autocomplete: "new-password", class: "block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" %>
+        </div>
+        <% if @minimum_password_length %>
+          <p class="mt-2 text-xs text-gray-500"><%= @minimum_password_length %> characters minimum</p>
         <% end %>
       </div>
-    </div>
-  </div>
-</div>
 
-<div class="row justify-content-center">
-  <div class="col-md-4">
-    <div class="card m-3" aria-labelledby="cancel-account-heading">
-      <div class="card-body">
-        <h4 id="cancel-account-heading" class="text-center">Cancel my account</h4>
-        <div class="text-center">
-          <p>Unhappy? </p>
-          <%= link_to "Cancel my account", "#", class: "btn btn-danger", data: { bs_toggle: "modal", bs_target: "#cancelConfirmationModal", path: registration_path(resource_name) }, aria: { label: "Cancel my account" } %>
-        </div>
-        <div class="text-center m-2">
-          <%= link_to "Back", tabs_path, aria: { label: "Back to tabs" } %>
+      <div>
+        <%= f.label :password_confirmation, "Confirm new password", class: "block text-sm font-medium text-gray-300" %>
+        <div class="mt-1">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" %>
         </div>
       </div>
+
+      <div>
+        <%= f.label :current_password, class: "block text-sm font-medium text-gray-300" %>
+        <i class="text-xs text-gray-400">(we need your current password to confirm your changes)</i>
+        <div class="mt-1">
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" %>
+        </div>
+      </div>
+
+      <div class="pt-5">
+        <div class="flex justify-end">
+          <%= link_to "Back", tabs_path, class: "bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md text-sm transition" %>
+          <%= button_tag "Update", type: "button", class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-gray-800 submit-button", data: { form_id: "user-edit-form" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-8 bg-gray-800 shadow-lg rounded-lg p-8 border border-red-500 border-opacity-30">
+    <h3 class="text-lg font-medium leading-6 text-white">Cancel my account</h3>
+    <div class="mt-2 max-w-xl text-sm text-gray-400">
+      <p>Unhappy with the service? Deleting your account is permanent and cannot be undone.</p>
+    </div>
+    <div class="mt-5">
+      <%= link_to "Cancel my account", "#", class: "inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-100 bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 focus:ring-offset-gray-800 sm:text-sm", data: { bs_toggle: "modal", bs_target: "#cancelConfirmationModal", path: registration_path(resource_name) } %>
     </div>
   </div>
 </div>
 
-<%= render 'shared/modal', title: 'Confirm Changes', body: 'Are you sure you want to continue?', no: 'Cancel', yes: 'Confirm', no_btn: 'btn btn-danger', yes_btn: 'btn btn-success', devise_action: false, modal_id: 'updateConfirmationModal' %>
-
-<%= render 'shared/modal', title: 'Confirm Account Deletion', body: 'Are you sure you want to delete your account?', no: 'Cancel', yes: 'Confirm', no_btn: 'btn btn-danger', yes_btn: 'btn btn-success', devise_action: true, modal_id: 'cancelConfirmationModal' %>
+<%= render 'shared/modal', title: 'Confirm Changes', body: 'Are you sure you want to continue?', no: 'Cancel', yes: 'Confirm', no_btn: 'bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', yes_btn: 'bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded', devise_action: false, modal_id: 'updateConfirmationModal' %>
+<%= render 'shared/modal', title: 'Confirm Account Deletion', body: 'Are you sure you want to delete your account? This action cannot be undone.', no: 'Cancel', yes: 'Delete Account', no_btn: 'bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', yes_btn: 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded', devise_action: true, modal_id: 'cancelConfirmationModal' %>
 
 <%= javascript_include_tag 'form_modal' %>

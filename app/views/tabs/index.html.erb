@@ -1,17 +1,15 @@
-<div class="row justify-content-center">
-  <div class="col-md-9 mb-3">
+<div class="max-w-3xl mx-auto">
+  <div class="mb-6">
     <%= render 'tabs/index/search_bar' %>
   </div>
-</div>
 
-<div class="row justify-content-center">
-  <div class="col-md-9">
+  <div id="tabs-container">
     <%= render 'tabs/index/index_card', tabs: @tabs, aria: { role: "list" } %>
   </div>
-</div>
 
-<div class="d-flex justify-content-center mt-2" role="navigation" aria-label="Pagination">
-  <%= paginate @tabs, remote: true %>
+  <div class="flex justify-center mt-6" role="navigation" aria-label="Pagination">
+    <%= paginate @tabs, remote: true %>
+  </div>
 </div>
 
 <%= javascript_include_tag 'smooth_search' %>
