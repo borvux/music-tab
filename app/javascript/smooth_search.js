@@ -13,5 +13,5 @@ function submitForm() {
         searchInput.setSelectionRange(cursorPosition, cursorPosition);
       }
     });
-  }, 200);
+  }, 300); // Increased delay slightly for better UX
 }
