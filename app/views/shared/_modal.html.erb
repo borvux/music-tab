@@ -1,19 +1,38 @@
-<div id="<%= modal_id %>" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-  <div class="relative top-20 mx-auto p-5 border w-full max-w-md shadow-lg rounded-md bg-gray-800">
-    <div class="mt-3 text-center">
-      <h3 class="text-lg leading-6 font-medium text-white" id="confirmationModalLabel"><%= title %></h3>
-      <div class="mt-2 px-7 py-3">
-        <p class="text-sm text-gray-300">
-          <%= body %>
-        </p>
+<div id="<%= modal_id %>"
+     data-controller="modal"
+     data-action="
+      click->modal#closeOnBackdropClick
+     "
+     class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 hidden"
+     data-modal-target="container"
+     aria-labelledby="modal-title-<%= modal_id %>"
+     role="dialog"
+     aria-modal="true">
+
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="relative bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md mx-4" role="document">
+      <div class="text-center">
+        <h3 class="text-lg leading-6 font-medium text-white" id="modal-title-<%= modal_id %>">
+          <%= title %>
+        </h3>
+        <div class="mt-2">
+          <p class="text-sm text-gray-400">
+            <%= body %>
+          </p>
+        </div>
       </div>
-      <div class="items-center px-4 py-3 space-x-4">
-        <% if devise_action || params[:action] == 'show' %>
-          <%= link_to yes, "#", id: "confirm-action", class: "#{yes_btn} px-4 py-2 text-white text-base font-medium rounded-md w-auto shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2", method: :delete %>
-        <% else %>
-          <button type="button" id="confirm-button" class="<%= yes_btn %> px-4 py-2 text-white text-base font-medium rounded-md w-auto shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"><%= yes %></button>
-        <% end %>
-        <button type="button" class="<%= no_btn %> px-4 py-2 text-white text-base font-medium rounded-md w-auto shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2" data-bs-dismiss="modal"><%= no %></button>
+      <div class="mt-5 sm:mt-6 flex justify-center space-x-4">
+        <button type="button"
+                data-action="click->modal#close"
+                class="<%= no_btn %> inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm">
+          <%= no %>
+        </button>
+        <button type="button"
+                data-action="click->modal#confirm"
+                data-modal-target="confirmButton"
+                class="<%= yes_btn %> inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm">
+          <%= yes %>
+        </button>
       </div>
     </div>
   </div>

@@ -72,5 +72,3 @@
 
 <%= render 'shared/modal', title: 'Confirm Changes', body: 'Are you sure you want to continue?', no: 'Cancel', yes: 'Confirm', no_btn: 'bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', yes_btn: 'bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded', devise_action: false, modal_id: 'updateConfirmationModal' %>
 <%= render 'shared/modal', title: 'Confirm Account Deletion', body: 'Are you sure you want to delete your account? This action cannot be undone.', no: 'Cancel', yes: 'Delete Account', no_btn: 'bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', yes_btn: 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded', devise_action: true, modal_id: 'cancelConfirmationModal' %>
-
-<%= javascript_include_tag 'form_modal' %>
